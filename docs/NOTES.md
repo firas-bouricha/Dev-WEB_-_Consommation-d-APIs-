@@ -40,3 +40,11 @@ id d'un album : 75ymIEBQv8zZhnKtabtB9C
 ![alt text](image-5.png)
 aprés on recupére les singles :
 ![alt text](image-7.png)
+## Q4 – Détail d'un titre : Affichez les détails du titre « La bandite » de JUL.
+- d'abord on recupére l'id du titre "La bandite" de JUL 
+https://developer.spotify.com/documentation/web-api/reference/search :
+![alt text](image-8.png)
+**id du titre : 0goer5e8B6SJaTV2B51k6f**
+- detail du titre :
+https://developer.spotify.com/documentation/web-api/reference/get-track
+![alt text](image-9.png)
