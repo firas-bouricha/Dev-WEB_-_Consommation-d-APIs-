@@ -1,0 +1,34 @@
+name: CI-CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Vérifier le format
+        run: test -z "$(gofmt -l .)"
+
+      - name: Analyser le code
+        run: go vet ./...
+
+      - name: Compiler
+        run: go build ./...
+
+      - name: Lancer les tests
+        run: go test ./...
+
+# CD : le déploiement est géré par Scalingo (lié au dépôt GitHub).
+# Il se déclenche après un push sur main, une fois la CI verte.
