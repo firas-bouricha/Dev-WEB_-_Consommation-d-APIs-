@@ -27,3 +27,16 @@ check :
 https://developer.spotify.com/documentation/web-api/reference/get-an-artist
 ![alt text](image-4.png)
 
+## Q3 – Discographie : Lister l’intégralité des titres de l’artiste «JUL»
+
+L’API Spotify n’a pas de requête « tous les titres d’un artiste » donc on va devoir récupérer tous les albums de l’artiste, puis tous les titres de chaque album.
+pour recupérer les albums de l’artiste
+https://developer.spotify.com/documentation/web-api/reference/get-an-artists-albums 
+![alt text](image-6.png)
+puis pour chaque album récupérer les titres
+exemple :
+https://api.spotify.com/v1/albums/{id}/tracks
+id d'un album : 75ymIEBQv8zZhnKtabtB9C
+![alt text](image-5.png)
+aprés on recupére les singles :
+![alt text](image-7.png)
