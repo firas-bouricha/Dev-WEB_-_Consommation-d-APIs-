@@ -48,3 +48,17 @@ https://developer.spotify.com/documentation/web-api/reference/search :
 - detail du titre :
 https://developer.spotify.com/documentation/web-api/reference/get-track
 ![alt text](image-9.png)
+
+## Q5 – Cas d'erreur : Reproduisez au moins trois réponses d'erreur : sans token, avec un token invalide ou expiré, et avec un identifiant de titre inexistant. Notez le code de statut et le corps de chaque réponse.
+
+- **cas 1  Sans token :**
+![alt text](image-11.png)
+Q4 sans token code de statut : 401
+
+- **cas 2 : token invalide**
+![alt text](image-12.png)
+Q4 token invalide code de statut : 401
+
+- **cas 3 : identifiant de titre inexistant** 
+![alt text](image-13.png)
+Q4 identifiant de titre inexistant code de statut : 404
