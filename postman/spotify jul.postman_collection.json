@@ -1,0 +1,237 @@
+{
+  "info": {
+    "_postman_id": "eeb7acf1-e055-4173-9ddf-e5948f463491",
+    "name": "spotify jul",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "60118608",
+    "_collection_link": "https://go.postman.co/collection/60118608-eeb7acf1-e055-4173-9ddf-e5948f463491?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "token auth",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set(\"token\", pm.response.json().access_token);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "client_credentials"
+            },
+            {
+              "key": "client_id",
+              "value": "{{client_id}}"
+            },
+            {
+              "key": "client_secret",
+              "value": "{{client_secret}}"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://accounts.spotify.com/api/token",
+          "protocol": "https",
+          "host": [
+            "accounts",
+            "spotify",
+            "com"
+          ],
+          "path": [
+            "api",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "recherche de l’artiste JUL",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.spotify.com/v1/search?q=jul&type=artist&limit=3",
+          "protocol": "https",
+          "host": [
+            "api",
+            "spotify",
+            "com"
+          ],
+          "path": [
+            "v1",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "jul"
+            },
+            {
+              "key": "type",
+              "value": "artist"
+            },
+            {
+              "key": "limit",
+              "value": "3"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Q3 - Albums de JUL",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.spotify.com/v1/artists/{{artist_id}}/albums?limit=&offset&include_groups=album",
+          "protocol": "https",
+          "host": [
+            "api",
+            "spotify",
+            "com"
+          ],
+          "path": [
+            "v1",
+            "artists",
+            "{{artist_id}}",
+            "albums"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": ""
+            },
+            {
+              "key": "offset",
+              "value": ""
+            },
+            {
+              "key": "include_groups",
+              "value": "album"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Q3 - titres de chaque album",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Q4 - chercher un titre",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.spotify.com/v1/search?q=track:La bandite artist:JUL&type=track",
+          "protocol": "https",
+          "host": [
+            "api",
+            "spotify",
+            "com"
+          ],
+          "path": [
+            "v1",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "track:La bandite artist:JUL"
+            },
+            {
+              "key": "type",
+              "value": "track"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Q4 - detaille d'un titre",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.spotify.com/v1/tracks/0goer5e8B6SJaTV2B51k6f",
+          "protocol": "https",
+          "host": [
+            "api",
+            "spotify",
+            "com"
+          ],
+          "path": [
+            "v1",
+            "tracks",
+            "0goer5e8B6SJaTV2B51k6f"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "client_id",
+      "value": ""
+    },
+    {
+      "key": "client_secret",
+      "value": ""
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "artist_id",
+      "value": ""
+    }
+  ]
+}
