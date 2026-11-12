@@ -9,17 +9,25 @@ import (
 	"time"
 )
 
+func getenv(key, fallback string) string {
+	v := os.Getenv(key)
+	if v != "" {
+		return v
+	} else {
+		return fallback
+	}
+}
 func main() {
 	//avant go run . set -a; source .env; set +a pour prendre host et port dans le fichier .env
-	host := os.Getenv("HOST")
-	if host == "" {
-		host = "localhost"
+	host := getenv("HOST", "localhost")
+	port := getenv("PORT", "8080")
+	clientID := os.Getenv("SPOTIFY_CLIENT_ID")
+	clientSecret := os.Getenv("SPOTIFY_CLIENT_SECRET")
+	if clientID == "" || clientSecret == "" {
+		log.Fatal("SPOTIFY_CLIENT_ID et SPOTIFY_CLIENT_SECRET sont obligatoires")
 	}
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
-
+	_ = clientID
+	_ = clientSecret
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /health", healthcheck)
 
