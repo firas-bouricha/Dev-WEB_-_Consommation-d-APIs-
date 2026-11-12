@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Hook pre-push : mêmes contrôles que la CI, avant d'envoyer le code.
+set -e
+
+# 1. Format : bloque si un fichier n'est pas formaté
+if [ -n "$(gofmt -l .)" ]; then
+  echo "Format KO. Fichiers à formater :"
+  gofmt -l .
+  echo "Corrige avec : gofmt -w ."
+  exit 1
+fi
+
+# 2. Analyse, compilation, tests
+go vet ./...
+go build ./...
+go test ./...

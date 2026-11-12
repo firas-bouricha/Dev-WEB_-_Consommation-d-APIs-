@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Hook pre-commit : formate les fichiers Go en staging, puis cherche des secrets.
+set -e
+
+# 1. Liste des fichiers .go ajoutés ou modifiés dans ce commit
+files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.go$' || true)
+
+# 2. Formatage automatique, puis re-ajout au commit
+if [ -n "$files" ]; then
+  gofmt -w $files
+  git add $files
+fi
+
+# 3. Scan de secrets 
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks protect --staged --redact
+else
+  echo "gitleaks absent : scan de secrets ignoré"
+fi
