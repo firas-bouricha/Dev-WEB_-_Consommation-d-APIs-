@@ -28,4 +28,5 @@ func TestDecodeTrack(t *testing.T) {
 	if tr.ExternalIDs.ISRC != "FR0U91900069" {
 		t.Errorf("isrc = %q", tr.ExternalIDs.ISRC)
 	}
+
 }
