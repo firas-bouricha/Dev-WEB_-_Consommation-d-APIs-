@@ -14,13 +14,15 @@ type Client struct {
 	BaseURL      string
 	ClientID     string
 	ClientSecret string
+	TokenURL     string
 }
 
 // NewClient construit un client avec un timeout.
 func NewClient(timeout time.Duration) *Client {
 	return &Client{
-		HTTP:    &http.Client{Timeout: timeout},
-		BaseURL: "https://api.spotify.com/v1",
+		HTTP:     &http.Client{Timeout: timeout},
+		BaseURL:  "https://api.spotify.com/v1",
+		TokenURL: "https://accounts.spotify.com/api/token",
 	}
 }
 
