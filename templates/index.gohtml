@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Titres de JUL</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Les titres de JUL</h1>
+        <p>{{len .Tracks}} titres</p>
+    </header>
+
+    <main class="liste">
+        {{range .Tracks}}
+        <article class="titre">
+            <img src="{{.Cover}}" alt="Cover de {{.Name}}" width="120" height="120">
+            <div class="infos">
+                <h2>{{.Name}}</h2>
+                <p class="artistes">{{.Artistes}}</p>
+                <p class="meta">{{.Album.ReleaseDate}} · {{.Duree}}</p>
+                <a class="bouton" href="/tracks/{{.ID}}">Détails</a>
+            </div>
+        </article>
+        {{else}}
+        <p>Aucun titre à afficher.</p>
+        {{end}}
+    </main>
+</body>
+
+</html>

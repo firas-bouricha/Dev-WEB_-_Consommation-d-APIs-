@@ -32,3 +32,20 @@ func (t Track) AFeat() bool {
 	}
 	return false
 }
+
+// Cover renvoie l'URL de la première image de l'album, ou "" s'il n'y en a pas.
+func (t Track) Cover() string {
+	if len(t.Album.Images) == 0 {
+		return ""
+	}
+	return t.Album.Images[0].URL
+}
+
+// Artistes renvoie les noms des artistes séparés par ", ".
+func (t Track) Artistes() string {
+	var noms []string
+	for _, a := range t.Artists {
+		noms = append(noms, a.Name)
+	}
+	return strings.Join(noms, ", ")
+}

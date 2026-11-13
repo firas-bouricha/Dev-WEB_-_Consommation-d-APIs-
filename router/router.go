@@ -9,5 +9,6 @@ import (
 func New() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /health", controller.Health)
+	mux.HandleFunc("GET /{$}", controller.Home)
 	return mux
 }
