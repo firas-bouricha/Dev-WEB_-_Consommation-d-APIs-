@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-//Duree renvoie la durée au format mm:ss
+// Duree renvoie la durée au format mm:ss
 func (t Track) Duree() string {
 	total := t.DurationMs / 1000
 	minutes := total / 60
