@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-// New crée le mux et branche chaque route sur son contrôleur.
+// Le ServeMux (mux) : renvoie l’annuaire avec toutes les routes
 func New() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /health", controller.Health)

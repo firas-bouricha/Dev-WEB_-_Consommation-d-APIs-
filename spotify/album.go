@@ -6,19 +6,20 @@ import (
 	"strconv"
 )
 
-const julID = "3IW7ScrzXmPvZhB27hmfgy"
+// accessible depuis main c pour J en majuscules, sinon c'est privé
+const JulID = "3IW7ScrzXmPvZhB27hmfgy"
 
 // GetArtistAlbums renvoie TOUS les albums et singles d'un artiste .
 func (c *Client) GetArtistAlbums(token, artistID string) ([]Album, error) {
 	var all []Album // la liste complète, vide au départ
-	limit := 50
+	limit := 10
 	offset := 0
 
 	for {
 		q := url.Values{}                                        // prépare les paramètres de la requête
 		q.Set("include_groups", "album,single")                  // on veut les albums et les singles
-		q.Set("limit", strconv.Itoa(limit))                      // 50 par page
-		q.Set("offset", strconv.Itoa(offset))                    //  on commence à la page 0, puis 50, puis 100...
+		q.Set("limit", strconv.Itoa(limit))                      // 10 par page
+		q.Set("offset", strconv.Itoa(offset))                    //  on commence à la page 0, puis 10, puis 20...
 		path := "/artists/" + artistID + "/albums?" + q.Encode() // c le lien complet de l'appel à Spotify
 
 		var page AlbumsPage              // la page reçue de Spotify
