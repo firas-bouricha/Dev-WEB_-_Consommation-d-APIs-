@@ -1,4 +1,4 @@
-package main
+package controller
 
 import (
 	"net/http"
@@ -9,7 +9,7 @@ import (
 func TestHealthcheck(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/health", nil)
 	rec := httptest.NewRecorder()
-	healthcheck(rec, req)
+	Health(rec, req)
 
 	if rec.Code != http.StatusOK {
 		t.Errorf("code = %d, attendu 200", rec.Code)

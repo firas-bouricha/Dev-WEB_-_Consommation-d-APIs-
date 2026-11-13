@@ -62,3 +62,17 @@ Q4 token invalide code de statut : 401
 - **cas 3 : identifiant de titre inexistant** 
 ![alt text](image-13.png)
 Q4 identifiant de titre inexistant code de statut : 404
+## export collection postman : 
+![alt text](image-14.png)
+
+## Difficultés rencontrées et solutions
+
+- **Q1 :** erreur 400 invalid_client. La collection avait une authentification Bearer, héritée par la requête du token. Solution : mettre "No Auth" sur cette requête.
+
+- **Q2 :** erreur 400 "Bad search type field artiste". J'avais écrit type=artiste en français. Solution : écrire type=artist.
+
+- **Q3 :** erreur 400 "Invalid base62 id". J'avais écrit {id} tel quel dans l'URL. Solution : utiliser la variable Postman {{artist_id}}.
+
+- **Q3 :** l'API n'a pas de requête "tous les titres d'un artiste". Solution : récupérer les albums de JUL, puis les titres de chaque album.
+
+- **Q4 :** "La bandite" existe deux fois (album et réédition). Solution : choisir un id. L'ISRC identique permettra de dédoublonner dans le code.

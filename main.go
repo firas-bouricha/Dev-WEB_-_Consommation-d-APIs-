@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"github.com/firas-bouricha/Dev_WEB_API/router"
 	"log"
 	"net"
 	"net/http"
@@ -28,8 +28,6 @@ func main() {
 	}
 	_ = clientID
 	_ = clientSecret
-	mux := http.NewServeMux()
-	mux.HandleFunc("GET /health", healthcheck)
 
 	srv := &http.Server{
 		Addr:              net.JoinHostPort(host, port),
@@ -37,6 +35,7 @@ func main() {
 		WriteTimeout:      15 * time.Second,
 		ReadHeaderTimeout: 5 * time.Second,
 		IdleTimeout:       60 * time.Second,
+		Handler:           router.New(),
 	}
 
 	log.Printf("écoute sur %s", srv.Addr)
@@ -44,11 +43,4 @@ func main() {
 		log.Fatalf("HTTP server ListenAndServe: %v", err)
 	}
 
-}
-func healthcheck(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
-		http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
-		return
-	}
-	fmt.Fprint(w, "ok")
 }
